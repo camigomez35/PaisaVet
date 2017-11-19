@@ -1,17 +1,38 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title color="dark" text-center>PaisaVet</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-card *ngFor="let item of veterinarias">
+
+   <ion-row (click)="verDetalle(item)">
+     <ion-thumbnail col-4 class="thumbnail">
+        <img [src]="item.imagen"/>
+     </ion-thumbnail>
+     <ion-col>
+       <h2 style="padding-top: 5px;">{{item.nombre}}</h2>
+       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi eaque nihil, rem hic, similique at ipsum voluptatum.
+       <ion-item>
+         <ion-badge  *ngIf="item.estado; else elseBlock" color="secondary">
+              Abierto
+          </ion-badge>
+         <span item-end>
+            <strong>$ {{item.price | number}}</strong>
+          </span>
+       </ion-item>
+     </ion-col>
+   </ion-row>
+ </ion-card>
+
+ <ng-template #elseBlock>
+   <ion-badge color="danger">
+        Cerrado
+    </ion-badge>
+ </ng-template>
+
+
+
 </ion-content>
